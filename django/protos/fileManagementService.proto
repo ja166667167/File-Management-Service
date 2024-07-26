@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package grpc_server;
+
+service FileManagementService{
+    
+    rpc GetRecords(GetRecordsRequest)returns(GetRecordResponse){}
+
+    rpc UploadRecord(UploadRecordRequest)returns(UploadResponse){}
+
+    rpc GetParticularRecords(GetPtclrRecordsRequest)returns(GetPtclrRecordsResponse){}
+    rpc DeleteRecord(DelRecordsRequest)returns(DelRecordsResponse){}
+}
+
+message userFile{
+    string fileName =1;
+    string filePath =2;
+}
+message fullFile{
+    string userName=1;
+    string fileName =2;
+    string filePath =3;
+}
+enum statusType{
+    unknown = 0;
+    success =1;
+    fail = 2;
+}
+// UploadRecord
+message UploadRecordRequest{
+    string userName = 1;
+    string fileName =2;
+    string filePath =3;
+}
+message UploadResponse {
+    statusType status = 1; 
+    string message = 2;
+}
+//GetRecords
+message GetRecordsRequest {
+    string userName = 1;
+}
+message GetRecordResponse {
+    repeated userFile files =1;
+}
+//GetParticularRecords
+message GetPtclrRecordsRequest{
+    string userName = 1;
+    string fileName =2;
+    string filePath =3;
+}
+message GetPtclrRecordsResponse{
+    repeated fullFile files =1;
+}
+//DeleteRecord
+message DelRecordsRequest{
+    string userName = 1;
+    string fileName =2;
+    string filePath =3;
+}
+message DelRecordsResponse{
+    statusType status = 1; 
+    string message = 2;
+}
