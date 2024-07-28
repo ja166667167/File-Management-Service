@@ -73,6 +73,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'file_management_service.wsgi.application'
 
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
+    }
+}
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 

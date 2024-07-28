@@ -31,6 +31,7 @@ class FileManagementService(pb2_grpc.FileManagementService):
         try:
             self.cursor.execute(query)
             result = self.cursor.fetchall()
+            # logging.info(f"Get Records Result = {result}")
         except Exception as e:
             self.conn.rollback()
             raise (e)
@@ -88,7 +89,6 @@ class FileManagementService(pb2_grpc.FileManagementService):
         try:
             self.cursor.execute(query)
             self.conn.commit()
-            # result=self.cursor.fetchall()
         except Exception as e:
             self.conn.rollback()
             logging.error(
@@ -99,7 +99,7 @@ class FileManagementService(pb2_grpc.FileManagementService):
         return pb2.DelRecordsResponse(status=pb2.statusType.Value('success'), message='Deleting done')
 
     def __del__(self):
-        self.cursor.close()
+        self.conn.close()
         self.cursor.close()
 
 

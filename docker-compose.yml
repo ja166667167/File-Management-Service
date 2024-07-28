@@ -6,9 +6,10 @@ services:
     volumes:
       - ./django:/file_management_service
     ports:
-      - "8000:8000"
+      - "8001:8000"
     environment:
       - GRPC_HOST=grpc
+      - GRPC_PORT=50051
     depends_on:
       db:
         condition: service_healthy
@@ -18,7 +19,7 @@ services:
       context: ./grpc
     command: python grpc_server.py
     volumes:
-      - ./grpc:/file_management_system
+      - ./grpc:/file_management_service
     ports:
       - "50051:50051"
     environment:
@@ -45,3 +46,31 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  django-test:
+    build:
+      context: ./django
+    volumes:
+      - ./django:/file_management_service
+    environment:
+      - GRPC_HOST=grpc
+      - GRPC_PORT=50051
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python manage.py test
+
+  grpc-test:
+    build:
+      context: ./grpc
+    volumes:
+      - ./grpc:/file_management_service
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=file-management-service
+    depends_on:
+      db:
+        condition: service_healthy
+    command: pytest -s tests/
