@@ -1,4 +1,16 @@
 services:
+  react:
+    build: ./react
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./react:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - VITE_BACKEND_ENDPOINT=https://django/api/files
+      - VITE_API_KEY=lskdjf9834lsdkjfASDF98sdf09sdfSDF0sdfSDF90sdf
+
   django:
     build:
       context: ./django
@@ -74,3 +86,4 @@ services:
       db:
         condition: service_healthy
     command: pytest -s tests/
+# python -m grpc_tools.protoc -I./protos --python_out=. --pyi_out=. --grpc_python_out=. E:\Work\File-Management-Service\grpc\protos\file

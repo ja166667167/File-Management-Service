@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'file_api_gateway.middleware.APIKeyMiddleware'
 ]
 
 ROOT_URLCONF = 'file_management_service.urls'
@@ -124,3 +125,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+API_KEYS = [
+    'lskdjf9834lsdkjfASDF98sdf09sdfSDF0sdfSDF90sdf'
+]
