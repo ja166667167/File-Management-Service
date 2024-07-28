@@ -1,4 +1,6 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
+
 
 package grpc_server;
 
@@ -10,6 +12,8 @@ service FileManagementService{
 
     rpc GetParticularRecords(GetPtclrRecordsRequest)returns(GetPtclrRecordsResponse){}
     rpc DeleteRecord(DelRecordsRequest)returns(DelRecordsResponse){}
+    rpc ListUsers(google.protobuf.Empty)returns(ListUsersResponse){}
+    rpc ListObj(ListObjRequest)returns(ListObjResponse){}
 }
 
 message userFile{
@@ -21,6 +25,7 @@ message fullFile{
     string fileName =2;
     string filePath =3;
 }
+
 enum statusType{
     unknown = 0;
     success =1;
@@ -61,4 +66,17 @@ message DelRecordsRequest{
 message DelRecordsResponse{
     statusType status = 1; 
     string message = 2;
+}
+//ListUsers
+message ListUsersResponse{
+    repeated string users=1;
+}
+//ListOjb
+message ListObjRequest{
+    string userName=1;
+    string filePath=2;
+}
+message ListObjResponse{
+    repeated string folders=1;
+    repeated string files =2;
 }

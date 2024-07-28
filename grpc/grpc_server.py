@@ -45,7 +45,12 @@ class FileManagementService(pb2_grpc.FileManagementService):
         return pb2.GetRecordResponse(files=parsedResult)
 
     def UploadRecord(self, request, context):
-        query = f"INSERT INTO files(file_name,user_name,file_path) VALUES('{request.fileName}','{request.userName}','{request.filePath}');"
+        fixFilePath = ''
+        if request.filePath[-1] != '/':
+            fixFilePath = request.filePath+'/'
+        else:
+            fixFilePath = request.filePath
+        query = f"INSERT INTO files(file_name,user_name,file_path) VALUES('{request.fileName}','{request.userName}','{fixFilePath}');"
         logging.info(f"Upload Records query = {query}")
         try:
             self.cursor.execute(query)
@@ -57,12 +62,11 @@ class FileManagementService(pb2_grpc.FileManagementService):
                 f"Error occur when uploading files: {pb2.UploadResponse(status=pb2.statusType.Value('fail'), message=f'Uploading Failed: {e}')}")
             return pb2.UploadResponse(status=pb2.statusType.Value('fail'), message=f'Uploading Failed: {e}')
         logging.info(
-            f"Upload Recors response: {pb2.UploadResponse(status=pb2.statusType.Value('success'), message='upload done')}")
+            f"Upload Records response: {pb2.UploadResponse(status=pb2.statusType.Value('success'), message='upload done')}")
         return pb2.UploadResponse(status=pb2.statusType.Value('success'), message='upload done')
 
 
 # Extra API
-
 
     def GetParticularRecords(self, request, context):
         query = f"SELECT * FROM files WHERE user_name='{request.userName}' and file_name='{request.fileName}' and file_path='{request.filePath}';"
@@ -95,8 +99,51 @@ class FileManagementService(pb2_grpc.FileManagementService):
                 f"Error occur when deleting files: {pb2.DelRecordsResponse(status=pb2.statusType.Value('fail'), message=f'Deleting Failed: {e}')}")
             return pb2.DelRecordsResponse(status=pb2.statusType.Value('fail'), message=f'Deleting Failed: {e}')
         logging.info(
-            f"Deleting Recors response: {pb2.DelRecordsResponse(status=pb2.statusType.Value('success'), message='Deleting done')}")
+            f"Deleting Records response: {pb2.DelRecordsResponse(status=pb2.statusType.Value('success'), message='Deleting done')}")
         return pb2.DelRecordsResponse(status=pb2.statusType.Value('success'), message='Deleting done')
+
+    def ListUsers(self, request, context):
+        query = "SELECT user_name FROM files;"
+        logging.info(f"List User query = {query}")
+
+        try:
+            self.cursor.execute(query)
+            result = self.cursor.fetchall()
+        except Exception as e:
+            logging.error(f"Error occur when Listing files: {e}")
+            raise (e)
+        output = []
+        for r in result:
+            output.append(r[0])
+        logging.info(f"List User done with response: {result}")
+        return pb2.ListUsersResponse(users=list(set(output)))
+
+    def ListObj(self, request, context):
+        query = f"SELECT file_path FROM files WHERE user_name='{request.userName}' AND file_path LIKE '{request.filePath}%';"
+        query2 = f"SELECT file_name FROM files WHERE user_name='{request.userName}' AND file_path ='{request.filePath}';"
+        logging.info(f"List Object-folder query = {query}")
+        logging.info(f"List Object-file query = {query2}")
+
+        try:
+            self.cursor.execute(query)
+            folderResults = self.cursor.fetchall()
+            self.cursor.execute(query2)
+            filesResults = self.cursor.fetchall()
+        except Exception as e:
+            raise (e)
+        folderList = []
+        for r in folderResults:
+            tmp = r[0][len(request.filePath):].split('/')[0]
+            if tmp != '' and tmp not in folderList:
+                folderList.append(tmp)
+        fileList = []
+        for r in filesResults:
+            fileList.append(r[0])
+        logging.info(
+            f"List Objescts Response = {folderList}, {fileList}")
+        return pb2.ListObjResponse(folders=folderList, files=fileList)
+
+# destructor
 
     def __del__(self):
         self.conn.close()
@@ -107,6 +154,7 @@ def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pb2_grpc.add_FileManagementServiceServicer_to_server(
         FileManagementService(), server)
+
     server.add_insecure_port('[::]:50051')
     server.start()
     server.wait_for_termination()
