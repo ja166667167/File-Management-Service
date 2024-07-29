@@ -81,7 +81,8 @@ class testGrpcServer(TestCase):
         mock_cursor_instance.execute = MagicMock()
         response = service.ListObj(request, context)
         expected_query = f"SELECT file_path FROM files WHERE user_name='testUser' AND file_path LIKE '/%';"
-        expected_query2 = f"SELECT file_name FROM files WHERE user_name='testUser' AND file_path ='/' OR file_path ='//';"
+        expected_query2 = f"SELECT file_name FROM files WHERE user_name='testUser' AND (file_path ='/' OR file_path ='//');"
+
         assert mock_cursor_instance.execute.call_count == 2
         call_args_list = mock_cursor_instance.execute.call_args_list
         assert call_args_list[0] == ((expected_query,),)
