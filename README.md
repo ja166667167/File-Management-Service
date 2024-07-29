@@ -1,6 +1,6 @@
 # File-Management-Service
 
-File Management Service for Wipro Asseccement
+This is a File Management Service for Wipro Asseccement.
 
 ## Set up Enviroment
 
@@ -9,6 +9,11 @@ To set up enviroment run following command:
 ```
 docker-compose up --build
 ```
+
+## Web Frontend
+
+After building up the environments, you can access the Web GUI with http://localhost:5173/
+Or accessing it through http://ec2-3-81-236-188.compute-1.amazonaws.com:5173/
 
 ## File API Spec
 
@@ -53,6 +58,8 @@ docker-compose up --build
       "message": "string"
     }
     ```
+
+### Additional API:
 
 - ListUsers:
 
@@ -99,3 +106,6 @@ docker-compose up --build
 - The file path should starts and ends with '/', if not the service will automaticly fix it.
   > file path: "/a" and "a/" and "a" will be fix to "/a/"
 - If the file path is empty it will be assumed as a root directory: '/'
+- The Port of each services might be differnt from the default, please check the docker-compose file.
+  > Django:8000
+  > React:
