@@ -93,3 +93,9 @@ docker-compose up --build
       "message": "string"
     }
     ```
+
+## Note
+
+- The file path should starts and ends with '/', if not the service will automaticly fix it.
+  > file path: "/a" and "a/" and "a" will be fix to "/a/"
+- If the file path is empty it will be assumed as a root directory: '/'
