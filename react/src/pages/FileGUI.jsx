@@ -30,17 +30,18 @@ function FileGUI() {
 
         <div className="gui-list">
           <ul className="user-list">
-            {userList.map((user) => (
-              <li key={user}>
-                <Link
-                  className="user-link"
-                  to="/UserGUI"
-                  state={{ user: user, path: "/" }}
-                >
-                  {user}
-                </Link>
-              </li>
-            ))}
+            {userList &&
+              userList.map((user) => (
+                <li key={user}>
+                  <Link
+                    className="user-link"
+                    to="/UserGUI"
+                    state={{ user: user, path: "/" }}
+                  >
+                    {user}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
         <h4 className="no-user-notification">

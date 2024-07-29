@@ -66,7 +66,9 @@ function UserGUI() {
         </ul>
         <h3>Files:</h3>
         <ul className="file-list">
-          {files && files[0] != "" && files.map((file) => <li>{file}</li>)}
+          {files &&
+            files[0] != "" &&
+            files.map((file) => <li key={file}>{file}</li>)}
         </ul>
       </div>
       {}

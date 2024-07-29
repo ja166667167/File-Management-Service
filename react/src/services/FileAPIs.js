@@ -90,7 +90,6 @@ export async function uploadRecord(postBody) {
       if (!response.ok) {
         throw new Error("Upload record Failed");
       }
-      console.log(response);
 
       return response.json();
     })
