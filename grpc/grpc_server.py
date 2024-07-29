@@ -38,8 +38,8 @@ class FileManagementService(pb2_grpc.FileManagementService):
         parsedResult = []
         for r in result:
             tmp = {}
-            tmp['fileName'] = r[0]
-            tmp['filePath'] = r[1]
+            tmp['name'] = r[0]
+            tmp['path'] = r[1]
             parsedResult.append(tmp)
         logging.info(f"Get Records Response = {parsedResult}")
         return pb2.GetRecordResponse(files=parsedResult)
