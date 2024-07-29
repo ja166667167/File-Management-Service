@@ -124,7 +124,7 @@ class FileManagementService(pb2_grpc.FileManagementService):
 
     def ListObj(self, request, context):
         query = f"SELECT file_path FROM files WHERE user_name='{request.userName}' AND file_path LIKE '{request.filePath}%';"
-        query2 = f"SELECT file_name FROM files WHERE user_name='{request.userName}' AND (file_path ='{request.filePath}' OR file_path='{request.filePath}/');"
+        query2 = f"SELECT file_name FROM files WHERE user_name='{request.userName}' AND (file_path ='{request.filePath}' OR file_path ='{request.filePath}/');"
         logging.info(f"List Object-folder query = {query}")
         logging.info(f"List Object-file query = {query2}")
 
