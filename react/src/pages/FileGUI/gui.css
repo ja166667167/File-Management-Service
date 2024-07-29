@@ -1,0 +1,12 @@
+.path-back-button {
+  background-color: #616161;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 2px;
+  font: 0.8em sans-serif;
+}
+.path-back-button:hover {
+  background-color: rgb(107, 107, 107);
+}

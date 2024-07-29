@@ -19,9 +19,9 @@ def file_api_entry_point(request):
         response = client.get_user_records(user_name)
     elif request.method == 'POST':
         request_body = json.loads(request.body.decode('utf-8'))
-        user_name = request_body.get('userName')
-        file_path = request_body.get('filePath')
-        file_name = request_body.get('fileName')
+        user_name = request_body.get('user_name')
+        file_path = request_body.get('file_path')
+        file_name = request_body.get('file_name')
         logging.info(
             f'POST request: user_name = {user_name}, file_path ={file_path} ,file_name ={file_name}')
         response = client.upload_record(user_name, file_name, file_path)

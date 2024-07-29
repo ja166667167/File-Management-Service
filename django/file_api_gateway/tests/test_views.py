@@ -14,7 +14,7 @@ class test_file_api_entry_point_(TestCase):
     def test_file_api_entry_point_POST(self, mock_post):
         request = HttpRequest()
         request.method = 'POST'
-        request._body = b'{"userName": "testUser","filePath": "/","fileName": "testFile"}'
+        request._body = b'{"user_name": "testUser","file_path": "/","file_name": "testFile"}'
         mock_post.return_value = {
             "status": "success",
             "message": "upload done"

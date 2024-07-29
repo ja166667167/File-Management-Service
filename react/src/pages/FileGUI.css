@@ -1,0 +1,33 @@
+.no-user-notification {
+  text-align: center;
+}
+.gui-container {
+  margin: 2%;
+  /* background-color: gray; */
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.gui-list {
+  height: 500px;
+  /* background-color: aquamarine; */
+}
+.gui-container h2 {
+  margin-left: 10px;
+}
+.gui-container h4 {
+  margin-left: 10px;
+}
+.user-list {
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.user-link {
+  font-size: 1.5em;
+  /* color: rgb(184, 186, 204); */
+}
+.refresh-button {
+  margin: auto;
+}

@@ -46,8 +46,12 @@ class FileManagementService(pb2_grpc.FileManagementService):
 
     def UploadRecord(self, request, context):
         fixFilePath = ''
-        if request.filePath[-1] != '/':
+        if request.filePath[0] == '':
+            fixFilePath = '/'
+        elif request.filePath[-1] != '/':
             fixFilePath = request.filePath+'/'
+        elif request.filePath[0] != '/':
+            fixFilePath = '/'+request.filePath
         else:
             fixFilePath = request.filePath
         query = f"INSERT INTO files(file_name,user_name,file_path) VALUES('{request.fileName}','{request.userName}','{fixFilePath}');"
@@ -120,7 +124,7 @@ class FileManagementService(pb2_grpc.FileManagementService):
 
     def ListObj(self, request, context):
         query = f"SELECT file_path FROM files WHERE user_name='{request.userName}' AND file_path LIKE '{request.filePath}%';"
-        query2 = f"SELECT file_name FROM files WHERE user_name='{request.userName}' AND file_path ='{request.filePath}';"
+        query2 = f"SELECT file_name FROM files WHERE user_name='{request.userName}' AND (file_path ='{request.filePath}' OR file_path='{request.filePath}/');"
         logging.info(f"List Object-folder query = {query}")
         logging.info(f"List Object-file query = {query2}")
 
@@ -133,14 +137,26 @@ class FileManagementService(pb2_grpc.FileManagementService):
             raise (e)
         folderList = []
         for r in folderResults:
-            tmp = r[0][len(request.filePath):].split('/')[0]
-            if tmp != '' and tmp not in folderList:
-                folderList.append(tmp)
+            tmp = r[0][len(request.filePath):]
+            if tmp == '':
+                continue
+            if tmp == '/':
+                folderList.append('/')
+                continue
+            if tmp[0] == '/':
+                tmp = tmp[1:]
+            tmp = tmp.split('/')[0]
+            if f"/{tmp}/" not in folderList:
+                folderList.append(f"/{tmp}/")
         fileList = []
         for r in filesResults:
             fileList.append(r[0])
         logging.info(
             f"List Objescts Response = {folderList}, {fileList}")
+        if not folderList:
+            folderList = ['']
+        if not fileList:
+            fileList = ['']
         return pb2.ListObjResponse(folders=folderList, files=fileList)
 
 # destructor

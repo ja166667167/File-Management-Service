@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-6$c0pf)ity1(k%-fjdw-wdghoy-(111#ja$i%o+_s=jt)=80_l
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+X_FRAME_OPTIONS = 'DENY'
 
 ALLOWED_HOSTS = ['*']
 APPEND_SLASH = False
@@ -39,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'file_api_gateway'
+    'file_api_gateway',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,9 +53,25 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'file_api_gateway.middleware.APIKeyMiddleware'
-]
+    'file_api_gateway.middleware.APIKeyMiddleware',
+    'file_api_gateway.middleware.DebugMiddleware',
 
+]
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "api-key"
+]
 ROOT_URLCONF = 'file_management_service.urls'
 
 TEMPLATES = [
