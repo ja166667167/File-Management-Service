@@ -3,7 +3,8 @@
 import grpc
 import warnings
 
-from grpc_code import fileManagementService_pb2 as grpc__code_dot_fileManagementService__pb2
+import grpc_code.fileManagementService_pb2 as fileManagementService__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 GRPC_GENERATED_VERSION = '1.65.1'
 GRPC_VERSION = grpc.__version__
@@ -13,15 +14,14 @@ _version_not_supported = False
 
 try:
     from grpc._utilities import first_version_is_lower
-    _version_not_supported = first_version_is_lower(
-        GRPC_VERSION, GRPC_GENERATED_VERSION)
+    _version_not_supported = first_version_is_lower(GRPC_VERSION, GRPC_GENERATED_VERSION)
 except ImportError:
     _version_not_supported = True
 
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in grpc_code/fileManagementService_pb2_grpc.py depends on'
+        + f' but the generated code in fileManagementService_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -41,25 +41,35 @@ class FileManagementServiceStub(object):
             channel: A grpc.Channel.
         """
         self.GetRecords = channel.unary_unary(
-            '/grpc_server.FileManagementService/GetRecords',
-            request_serializer=grpc__code_dot_fileManagementService__pb2.GetRecordsRequest.SerializeToString,
-            response_deserializer=grpc__code_dot_fileManagementService__pb2.GetRecordResponse.FromString,
-            _registered_method=True)
+                '/grpc_server.FileManagementService/GetRecords',
+                request_serializer=fileManagementService__pb2.GetRecordsRequest.SerializeToString,
+                response_deserializer=fileManagementService__pb2.GetRecordResponse.FromString,
+                _registered_method=True)
         self.UploadRecord = channel.unary_unary(
-            '/grpc_server.FileManagementService/UploadRecord',
-            request_serializer=grpc__code_dot_fileManagementService__pb2.UploadRecordRequest.SerializeToString,
-            response_deserializer=grpc__code_dot_fileManagementService__pb2.UploadResponse.FromString,
-            _registered_method=True)
+                '/grpc_server.FileManagementService/UploadRecord',
+                request_serializer=fileManagementService__pb2.UploadRecordRequest.SerializeToString,
+                response_deserializer=fileManagementService__pb2.UploadResponse.FromString,
+                _registered_method=True)
         self.GetParticularRecords = channel.unary_unary(
-            '/grpc_server.FileManagementService/GetParticularRecords',
-            request_serializer=grpc__code_dot_fileManagementService__pb2.GetPtclrRecordsRequest.SerializeToString,
-            response_deserializer=grpc__code_dot_fileManagementService__pb2.GetPtclrRecordsResponse.FromString,
-            _registered_method=True)
+                '/grpc_server.FileManagementService/GetParticularRecords',
+                request_serializer=fileManagementService__pb2.GetPtclrRecordsRequest.SerializeToString,
+                response_deserializer=fileManagementService__pb2.GetPtclrRecordsResponse.FromString,
+                _registered_method=True)
         self.DeleteRecord = channel.unary_unary(
-            '/grpc_server.FileManagementService/DeleteRecord',
-            request_serializer=grpc__code_dot_fileManagementService__pb2.DelRecordsRequest.SerializeToString,
-            response_deserializer=grpc__code_dot_fileManagementService__pb2.DelRecordsResponse.FromString,
-            _registered_method=True)
+                '/grpc_server.FileManagementService/DeleteRecord',
+                request_serializer=fileManagementService__pb2.DelRecordsRequest.SerializeToString,
+                response_deserializer=fileManagementService__pb2.DelRecordsResponse.FromString,
+                _registered_method=True)
+        self.ListUsers = channel.unary_unary(
+                '/grpc_server.FileManagementService/ListUsers',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=fileManagementService__pb2.ListUsersResponse.FromString,
+                _registered_method=True)
+        self.ListObj = channel.unary_unary(
+                '/grpc_server.FileManagementService/ListObj',
+                request_serializer=fileManagementService__pb2.ListObjRequest.SerializeToString,
+                response_deserializer=fileManagementService__pb2.ListObjResponse.FromString,
+                _registered_method=True)
 
 
 class FileManagementServiceServicer(object):
@@ -89,59 +99,79 @@ class FileManagementServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListUsers(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListObj(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FileManagementServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'GetRecords': grpc.unary_unary_rpc_method_handler(
-            servicer.GetRecords,
-            request_deserializer=grpc__code_dot_fileManagementService__pb2.GetRecordsRequest.FromString,
-            response_serializer=grpc__code_dot_fileManagementService__pb2.GetRecordResponse.SerializeToString,
-        ),
-        'UploadRecord': grpc.unary_unary_rpc_method_handler(
-            servicer.UploadRecord,
-            request_deserializer=grpc__code_dot_fileManagementService__pb2.UploadRecordRequest.FromString,
-            response_serializer=grpc__code_dot_fileManagementService__pb2.UploadResponse.SerializeToString,
-        ),
-        'GetParticularRecords': grpc.unary_unary_rpc_method_handler(
-            servicer.GetParticularRecords,
-            request_deserializer=grpc__code_dot_fileManagementService__pb2.GetPtclrRecordsRequest.FromString,
-            response_serializer=grpc__code_dot_fileManagementService__pb2.GetPtclrRecordsResponse.SerializeToString,
-        ),
-        'DeleteRecord': grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteRecord,
-            request_deserializer=grpc__code_dot_fileManagementService__pb2.DelRecordsRequest.FromString,
-            response_serializer=grpc__code_dot_fileManagementService__pb2.DelRecordsResponse.SerializeToString,
-        ),
+            'GetRecords': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetRecords,
+                    request_deserializer=fileManagementService__pb2.GetRecordsRequest.FromString,
+                    response_serializer=fileManagementService__pb2.GetRecordResponse.SerializeToString,
+            ),
+            'UploadRecord': grpc.unary_unary_rpc_method_handler(
+                    servicer.UploadRecord,
+                    request_deserializer=fileManagementService__pb2.UploadRecordRequest.FromString,
+                    response_serializer=fileManagementService__pb2.UploadResponse.SerializeToString,
+            ),
+            'GetParticularRecords': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetParticularRecords,
+                    request_deserializer=fileManagementService__pb2.GetPtclrRecordsRequest.FromString,
+                    response_serializer=fileManagementService__pb2.GetPtclrRecordsResponse.SerializeToString,
+            ),
+            'DeleteRecord': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteRecord,
+                    request_deserializer=fileManagementService__pb2.DelRecordsRequest.FromString,
+                    response_serializer=fileManagementService__pb2.DelRecordsResponse.SerializeToString,
+            ),
+            'ListUsers': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListUsers,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=fileManagementService__pb2.ListUsersResponse.SerializeToString,
+            ),
+            'ListObj': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListObj,
+                    request_deserializer=fileManagementService__pb2.ListObjRequest.FromString,
+                    response_serializer=fileManagementService__pb2.ListObjResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        'grpc_server.FileManagementService', rpc_method_handlers)
+            'grpc_server.FileManagementService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers(
-        'grpc_server.FileManagementService', rpc_method_handlers)
+    server.add_registered_method_handlers('grpc_server.FileManagementService', rpc_method_handlers)
+
 
  # This class is part of an EXPERIMENTAL API.
-
-
 class FileManagementService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def GetRecords(request,
-                   target,
-                   options=(),
-                   channel_credentials=None,
-                   call_credentials=None,
-                   insecure=False,
-                   compression=None,
-                   wait_for_ready=None,
-                   timeout=None,
-                   metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
             '/grpc_server.FileManagementService/GetRecords',
-            grpc__code_dot_fileManagementService__pb2.GetRecordsRequest.SerializeToString,
-            grpc__code_dot_fileManagementService__pb2.GetRecordResponse.FromString,
+            fileManagementService__pb2.GetRecordsRequest.SerializeToString,
+            fileManagementService__pb2.GetRecordResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -154,21 +184,21 @@ class FileManagementService(object):
 
     @staticmethod
     def UploadRecord(request,
-                     target,
-                     options=(),
-                     channel_credentials=None,
-                     call_credentials=None,
-                     insecure=False,
-                     compression=None,
-                     wait_for_ready=None,
-                     timeout=None,
-                     metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
             '/grpc_server.FileManagementService/UploadRecord',
-            grpc__code_dot_fileManagementService__pb2.UploadRecordRequest.SerializeToString,
-            grpc__code_dot_fileManagementService__pb2.UploadResponse.FromString,
+            fileManagementService__pb2.UploadRecordRequest.SerializeToString,
+            fileManagementService__pb2.UploadResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -181,21 +211,21 @@ class FileManagementService(object):
 
     @staticmethod
     def GetParticularRecords(request,
-                             target,
-                             options=(),
-                             channel_credentials=None,
-                             call_credentials=None,
-                             insecure=False,
-                             compression=None,
-                             wait_for_ready=None,
-                             timeout=None,
-                             metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
             '/grpc_server.FileManagementService/GetParticularRecords',
-            grpc__code_dot_fileManagementService__pb2.GetPtclrRecordsRequest.SerializeToString,
-            grpc__code_dot_fileManagementService__pb2.GetPtclrRecordsResponse.FromString,
+            fileManagementService__pb2.GetPtclrRecordsRequest.SerializeToString,
+            fileManagementService__pb2.GetPtclrRecordsResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -208,21 +238,75 @@ class FileManagementService(object):
 
     @staticmethod
     def DeleteRecord(request,
-                     target,
-                     options=(),
-                     channel_credentials=None,
-                     call_credentials=None,
-                     insecure=False,
-                     compression=None,
-                     wait_for_ready=None,
-                     timeout=None,
-                     metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(
             request,
             target,
             '/grpc_server.FileManagementService/DeleteRecord',
-            grpc__code_dot_fileManagementService__pb2.DelRecordsRequest.SerializeToString,
-            grpc__code_dot_fileManagementService__pb2.DelRecordsResponse.FromString,
+            fileManagementService__pb2.DelRecordsRequest.SerializeToString,
+            fileManagementService__pb2.DelRecordsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListUsers(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/grpc_server.FileManagementService/ListUsers',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            fileManagementService__pb2.ListUsersResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListObj(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/grpc_server.FileManagementService/ListObj',
+            fileManagementService__pb2.ListObjRequest.SerializeToString,
+            fileManagementService__pb2.ListObjResponse.FromString,
             options,
             channel_credentials,
             insecure,

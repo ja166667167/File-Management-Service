@@ -1,0 +1,24 @@
+.homeTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh; /* Full viewport height */
+}
+
+.homeTitle h1 {
+  font-size: 4rem; /* Large font size */
+  font-weight: bold;
+  color: white; /* Dark text color */
+}
+.introduction {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 650px;
+  background-color: rgb(56, 53, 49);
+}
+.homeText {
+  font-size: large;
+}

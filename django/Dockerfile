@@ -4,14 +4,14 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set work directory
-WORKDIR /file_management_system
+WORKDIR /file_management_service
 
 # Install dependencies
-COPY requirements.txt /file_management_system/
+COPY requirements.txt /file_management_service/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project
-COPY . /file_management_system/
+COPY . /file_management_service/
 
 # Run Django server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
