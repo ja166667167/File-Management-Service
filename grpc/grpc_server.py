@@ -45,15 +45,14 @@ class FileManagementService(pb2_grpc.FileManagementService):
         return pb2.GetRecordResponse(files=parsedResult)
 
     def UploadRecord(self, request, context):
-        fixFilePath = ''
+        fixFilePath = request.filePath
         if request.filePath[0] == '':
             fixFilePath = '/'
         elif request.filePath[-1] != '/':
-            fixFilePath = request.filePath+'/'
+            fixFilePath = fixFilePath+'/'
         elif request.filePath[0] != '/':
-            fixFilePath = '/'+request.filePath
-        else:
-            fixFilePath = request.filePath
+            fixFilePath = '/'+fixFilePath
+
         query = f"INSERT INTO files(file_name,user_name,file_path) VALUES('{request.fileName}','{request.userName}','{fixFilePath}');"
         logging.info(f"Upload Records query = {query}")
         try:
