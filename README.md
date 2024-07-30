@@ -108,4 +108,6 @@ After building up the environments, you can access the Web GUI with http://local
 - If the file path is empty it will be assumed as a root directory: '/'
 - The Port of each services might be differnt from the default, please check the docker-compose file.
   > Django:8000
-  > React:
+  > Postgres:5433
+  > GRPC:50051
+  > React:5173
