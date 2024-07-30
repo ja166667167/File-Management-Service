@@ -14,6 +14,10 @@ docker-compose up --build
 
 #### After building up the environments, you can access the Web GUI with http://localhost:5173/ 
 Or you can access it with a built up service at http://ec2-3-81-236-188.compute-1.amazonaws.com/, with mocked data inserted
+## Connecting Directly
+### There is a API-KEY set for the API, please add this information when accessing:
+> { api-key : lskdjf9834lsdkjfASDF98sdf09sdfSDF0sdfSDF90sdf }
+
 
 
 ## File API Spec
