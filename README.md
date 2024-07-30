@@ -12,8 +12,8 @@ docker-compose up --build
 
 ## Web Frontend
 
-After building up the environments, you can access the Web GUI with http://localhost:5173/
-Or access it directly from http://ec2-3-81-236-188.compute-1.amazonaws.com:5173/
+#### After building up the environments, you can access the Web GUI with http://localhost:5173/ 
+#### Or access it directly from http://ec2-3-81-236-188.compute-1.amazonaws.com:5173/
 
 
 ## File API Spec
