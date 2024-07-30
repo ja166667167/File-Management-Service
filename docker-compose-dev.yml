@@ -1,0 +1,91 @@
+services:
+  react:
+    build:
+      context: ./react
+      dockerfile: Dockerfile-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./react:/app
+      - /app/node_modules
+
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - VITE_BACKEND_ENDPOINT=http://localhost:8000/api/
+      - VITE_API_KEY=lskdjf9834lsdkjfASDF98sdf09sdfSDF0sdfSDF90sdf
+
+  django:
+    build:
+      context: ./django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django:/file_management_service
+    environment:
+      - GRPC_HOST=grpc
+      - GRPC_PORT=50051
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  grpc:
+    build:
+      context: ./grpc
+    command: python grpc_server.py
+    volumes:
+      - ./grpc:/file_management_service
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=file-management-service
+    ports:
+      - "50051:50051"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:13
+    volumes:
+      - ./postgresql:/docker-entrypoint-initdb.d/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=file-management-service
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  django-test:
+    build:
+      context: ./django
+    volumes:
+      - ./django:/file_management_service
+    environment:
+      - GRPC_HOST=grpc
+      - GRPC_PORT=50051
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python manage.py test
+
+  grpc-test:
+    build:
+      context: ./grpc
+    volumes:
+      - ./grpc:/file_management_service
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=file-management-service
+    depends_on:
+      db:
+        condition: service_healthy
+    command: pytest -s tests/
