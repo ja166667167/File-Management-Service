@@ -28,6 +28,8 @@ Or you can access it with a built up service at http://ec2-3-81-236-188.compute-
 ## File API Spec
 
 ### Required API:
+#### Host: http://localhost:8000
+#### Public Host: http://ec2-3-81-236-188.compute-1.amazonaws.com:8000
 
 - GetRecords:
 
