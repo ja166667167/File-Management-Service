@@ -17,8 +17,8 @@ service FileManagementService{
 }
 
 message userFile{
-    string fileName =1;
-    string filePath =2;
+    string name =1;
+    string path =2;
 }
 message fullFile{
     string userName=1;

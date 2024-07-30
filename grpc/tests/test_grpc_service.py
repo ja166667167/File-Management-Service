@@ -29,7 +29,7 @@ class testGrpcServer(TestCase):
         expected_query = f"SELECT file_name, file_path FROM files WHERE user_name = 'testUser';"
         mock_cursor_instance.execute.assert_called_once_with(expected_query)
         assert response == pb2.GetRecordResponse(
-            files=[{'fileName': 'testFile', 'filePath': '/'}])
+            files=[{'name': 'testFile', 'path': '/'}])
 
     @patch('psycopg.Connection.cursor')
     def test_delete_records(self, mock_cursor):

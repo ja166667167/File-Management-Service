@@ -15,41 +15,41 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1b\x66ileManagementService.proto\x12\x0bgrpc_server\x1a\x1bgoogle/protobuf/empty.proto\".\n\x08userFile\x12\x10\n\x08\x66ileName\x18\x01 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x02 \x01(\t\"@\n\x08\x66ullFile\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x03 \x01(\t\"K\n\x13UploadRecordRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x03 \x01(\t\"J\n\x0eUploadResponse\x12\'\n\x06status\x18\x01 \x01(\x0e\x32\x17.grpc_server.statusType\x12\x0f\n\x07message\x18\x02 \x01(\t\"%\n\x11GetRecordsRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\"9\n\x11GetRecordResponse\x12$\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x15.grpc_server.userFile\"N\n\x16GetPtclrRecordsRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x03 \x01(\t\"?\n\x17GetPtclrRecordsResponse\x12$\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x15.grpc_server.fullFile\"I\n\x11\x44\x65lRecordsRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x03 \x01(\t\"N\n\x12\x44\x65lRecordsResponse\x12\'\n\x06status\x18\x01 \x01(\x0e\x32\x17.grpc_server.statusType\x12\x0f\n\x07message\x18\x02 \x01(\t\"\"\n\x11ListUsersResponse\x12\r\n\x05users\x18\x01 \x03(\t\"4\n\x0eListObjRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x02 \x01(\t\"1\n\x0fListObjResponse\x12\x0f\n\x07\x66olders\x18\x01 \x03(\t\x12\r\n\x05\x66iles\x18\x02 \x03(\t*0\n\nstatusType\x12\x0b\n\x07unknown\x10\x00\x12\x0b\n\x07success\x10\x01\x12\x08\n\x04\x66\x61il\x10\x02\x32\xff\x03\n\x15\x46ileManagementService\x12N\n\nGetRecords\x12\x1e.grpc_server.GetRecordsRequest\x1a\x1e.grpc_server.GetRecordResponse\"\x00\x12O\n\x0cUploadRecord\x12 .grpc_server.UploadRecordRequest\x1a\x1b.grpc_server.UploadResponse\"\x00\x12\x63\n\x14GetParticularRecords\x12#.grpc_server.GetPtclrRecordsRequest\x1a$.grpc_server.GetPtclrRecordsResponse\"\x00\x12Q\n\x0c\x44\x65leteRecord\x12\x1e.grpc_server.DelRecordsRequest\x1a\x1f.grpc_server.DelRecordsResponse\"\x00\x12\x45\n\tListUsers\x12\x16.google.protobuf.Empty\x1a\x1e.grpc_server.ListUsersResponse\"\x00\x12\x46\n\x07ListObj\x12\x1b.grpc_server.ListObjRequest\x1a\x1c.grpc_server.ListObjResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1b\x66ileManagementService.proto\x12\x0bgrpc_server\x1a\x1bgoogle/protobuf/empty.proto\"&\n\x08userFile\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\"@\n\x08\x66ullFile\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x03 \x01(\t\"K\n\x13UploadRecordRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x03 \x01(\t\"J\n\x0eUploadResponse\x12\'\n\x06status\x18\x01 \x01(\x0e\x32\x17.grpc_server.statusType\x12\x0f\n\x07message\x18\x02 \x01(\t\"%\n\x11GetRecordsRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\"9\n\x11GetRecordResponse\x12$\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x15.grpc_server.userFile\"N\n\x16GetPtclrRecordsRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x03 \x01(\t\"?\n\x17GetPtclrRecordsResponse\x12$\n\x05\x66iles\x18\x01 \x03(\x0b\x32\x15.grpc_server.fullFile\"I\n\x11\x44\x65lRecordsRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x03 \x01(\t\"N\n\x12\x44\x65lRecordsResponse\x12\'\n\x06status\x18\x01 \x01(\x0e\x32\x17.grpc_server.statusType\x12\x0f\n\x07message\x18\x02 \x01(\t\"\"\n\x11ListUsersResponse\x12\r\n\x05users\x18\x01 \x03(\t\"4\n\x0eListObjRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08\x66ilePath\x18\x02 \x01(\t\"1\n\x0fListObjResponse\x12\x0f\n\x07\x66olders\x18\x01 \x03(\t\x12\r\n\x05\x66iles\x18\x02 \x03(\t*0\n\nstatusType\x12\x0b\n\x07unknown\x10\x00\x12\x0b\n\x07success\x10\x01\x12\x08\n\x04\x66\x61il\x10\x02\x32\xff\x03\n\x15\x46ileManagementService\x12N\n\nGetRecords\x12\x1e.grpc_server.GetRecordsRequest\x1a\x1e.grpc_server.GetRecordResponse\"\x00\x12O\n\x0cUploadRecord\x12 .grpc_server.UploadRecordRequest\x1a\x1b.grpc_server.UploadResponse\"\x00\x12\x63\n\x14GetParticularRecords\x12#.grpc_server.GetPtclrRecordsRequest\x1a$.grpc_server.GetPtclrRecordsResponse\"\x00\x12Q\n\x0c\x44\x65leteRecord\x12\x1e.grpc_server.DelRecordsRequest\x1a\x1f.grpc_server.DelRecordsResponse\"\x00\x12\x45\n\tListUsers\x12\x16.google.protobuf.Empty\x1a\x1e.grpc_server.ListUsersResponse\"\x00\x12\x46\n\x07ListObj\x12\x1b.grpc_server.ListObjRequest\x1a\x1c.grpc_server.ListObjResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'fileManagementService_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_STATUSTYPE']._serialized_start=879
-  _globals['_STATUSTYPE']._serialized_end=927
+  _globals['_STATUSTYPE']._serialized_start=871
+  _globals['_STATUSTYPE']._serialized_end=919
   _globals['_USERFILE']._serialized_start=73
-  _globals['_USERFILE']._serialized_end=119
-  _globals['_FULLFILE']._serialized_start=121
-  _globals['_FULLFILE']._serialized_end=185
-  _globals['_UPLOADRECORDREQUEST']._serialized_start=187
-  _globals['_UPLOADRECORDREQUEST']._serialized_end=262
-  _globals['_UPLOADRESPONSE']._serialized_start=264
-  _globals['_UPLOADRESPONSE']._serialized_end=338
-  _globals['_GETRECORDSREQUEST']._serialized_start=340
-  _globals['_GETRECORDSREQUEST']._serialized_end=377
-  _globals['_GETRECORDRESPONSE']._serialized_start=379
-  _globals['_GETRECORDRESPONSE']._serialized_end=436
-  _globals['_GETPTCLRRECORDSREQUEST']._serialized_start=438
-  _globals['_GETPTCLRRECORDSREQUEST']._serialized_end=516
-  _globals['_GETPTCLRRECORDSRESPONSE']._serialized_start=518
-  _globals['_GETPTCLRRECORDSRESPONSE']._serialized_end=581
-  _globals['_DELRECORDSREQUEST']._serialized_start=583
-  _globals['_DELRECORDSREQUEST']._serialized_end=656
-  _globals['_DELRECORDSRESPONSE']._serialized_start=658
-  _globals['_DELRECORDSRESPONSE']._serialized_end=736
-  _globals['_LISTUSERSRESPONSE']._serialized_start=738
-  _globals['_LISTUSERSRESPONSE']._serialized_end=772
-  _globals['_LISTOBJREQUEST']._serialized_start=774
-  _globals['_LISTOBJREQUEST']._serialized_end=826
-  _globals['_LISTOBJRESPONSE']._serialized_start=828
-  _globals['_LISTOBJRESPONSE']._serialized_end=877
-  _globals['_FILEMANAGEMENTSERVICE']._serialized_start=930
-  _globals['_FILEMANAGEMENTSERVICE']._serialized_end=1441
+  _globals['_USERFILE']._serialized_end=111
+  _globals['_FULLFILE']._serialized_start=113
+  _globals['_FULLFILE']._serialized_end=177
+  _globals['_UPLOADRECORDREQUEST']._serialized_start=179
+  _globals['_UPLOADRECORDREQUEST']._serialized_end=254
+  _globals['_UPLOADRESPONSE']._serialized_start=256
+  _globals['_UPLOADRESPONSE']._serialized_end=330
+  _globals['_GETRECORDSREQUEST']._serialized_start=332
+  _globals['_GETRECORDSREQUEST']._serialized_end=369
+  _globals['_GETRECORDRESPONSE']._serialized_start=371
+  _globals['_GETRECORDRESPONSE']._serialized_end=428
+  _globals['_GETPTCLRRECORDSREQUEST']._serialized_start=430
+  _globals['_GETPTCLRRECORDSREQUEST']._serialized_end=508
+  _globals['_GETPTCLRRECORDSRESPONSE']._serialized_start=510
+  _globals['_GETPTCLRRECORDSRESPONSE']._serialized_end=573
+  _globals['_DELRECORDSREQUEST']._serialized_start=575
+  _globals['_DELRECORDSREQUEST']._serialized_end=648
+  _globals['_DELRECORDSRESPONSE']._serialized_start=650
+  _globals['_DELRECORDSRESPONSE']._serialized_end=728
+  _globals['_LISTUSERSRESPONSE']._serialized_start=730
+  _globals['_LISTUSERSRESPONSE']._serialized_end=764
+  _globals['_LISTOBJREQUEST']._serialized_start=766
+  _globals['_LISTOBJREQUEST']._serialized_end=818
+  _globals['_LISTOBJRESPONSE']._serialized_start=820
+  _globals['_LISTOBJRESPONSE']._serialized_end=869
+  _globals['_FILEMANAGEMENTSERVICE']._serialized_start=922
+  _globals['_FILEMANAGEMENTSERVICE']._serialized_end=1433
 # @@protoc_insertion_point(module_scope)
