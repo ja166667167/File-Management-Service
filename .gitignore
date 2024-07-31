@@ -1,2 +1,5 @@
 *Pipfile*
 __pycache__
+*.log
+dev.sh
+prod.sh

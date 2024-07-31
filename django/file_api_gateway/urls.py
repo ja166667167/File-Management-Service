@@ -6,5 +6,5 @@ urlpatterns = [
     path('listUsers/', views.list_users, name='list_users'),
     path('listObj/', views.list_obj, name='list_obj'),
     path('deleteRecord/',
-         views.delete_record, name='delete_records')
+         views.delete_record, name='delete_records'),
 ]
