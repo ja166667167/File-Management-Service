@@ -13,12 +13,23 @@ docker-compose up --build
 ## Web Frontend
 
 #### After building up the environments, you can access the Web GUI with http://localhost:5173/ 
+Or you can access it with a built up service at http://file-system-1957172786.us-east-1.elb.amazonaws.com/, with mocked data inserted
+## Connecting Directly
+#### There is a API-KEY set for the API, please add this information when accessing:
+<details>
+  <summary>Example</summary>
 
+  ```
+   { api-key : lskdjf9834lsdkjfASDF98sdf09sdfSDF0sdfSDF90sdf }
+  ```
+</details>
 
 
 ## File API Spec
 
 ### Required API:
+#### Host: http://localhost:8000
+#### Public Host: http://ec2-3-81-236-188.compute-1.amazonaws.com:8000
 
 - GetRecords:
 
