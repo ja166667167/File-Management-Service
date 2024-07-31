@@ -22,6 +22,6 @@ from .healthCheck import health_check
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('file_api_gateway.urls')),
-    path('healthCheck/', health_check)
+    path('healthCheck/', health_check, name='health_check')
 
 ]

@@ -148,3 +148,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 API_KEYS = [
     'lskdjf9834lsdkjfASDF98sdf09sdfSDF0sdfSDF90sdf'
 ]
+
+APPEND_SLASH = True

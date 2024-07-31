@@ -54,11 +54,12 @@ export async function listObjects(userName, filePath) {
 }
 
 export async function listUsers() {
-  const response = await fetch(`${BACKEND_HOST}listUsers/`, {
+  console.log(BACKEND_HOST);
+  const response = await fetch(`http://localhost:8000/api/listUsers/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "API-KEY": BACKEND_API_KEY,
+      "API-KEY": "lskdjf9834lsdkjfASDF98sdf09sdfSDF0sdfSDF90sdf",
     },
   })
     .then((response) => {

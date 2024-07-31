@@ -4,6 +4,7 @@ import json
 import logging
 import base64
 
+
 @csrf_exempt
 def health_check(request):
-    return {"status":200}
+    return JsonResponse({"status": 200})
