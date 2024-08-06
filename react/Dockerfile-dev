@@ -1,6 +1,7 @@
 # Use the official Node.js image as a base
 FROM node:20.15.0
-
+ARG VITE_REACT_PORT
+ENV VITE_REACT_PORT=$VITE_REACT_PORT
 # Set the working directory
 WORKDIR /app
 
@@ -14,7 +15,7 @@ RUN npm install
 COPY . .
 
 # Expose the port Vite runs on
-EXPOSE 5173
+EXPOSE ${VITE_REACT_PORT}
 
 # Start the application
 CMD ["npm", "run", "dev"]
