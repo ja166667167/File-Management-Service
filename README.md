@@ -13,7 +13,7 @@ docker-compose up --build
 ## Web Frontend
 
 #### After building up the environments, you can access the Web GUI with http://localhost:5173/ 
-Or you can access it with a built up service at http://file-system-1957172786.us-east-1.elb.amazonaws.com/, with mocked data inserted
+(Unaviable Right Now)<s>Or you can access it with a built up service at http://file-system-1957172786.us-east-1.elb.amazonaws.com/, with mocked data inserted</s>
 ## Connecting Directly
 #### There is a API-KEY set for the API, please add this information when accessing:
 <details>
