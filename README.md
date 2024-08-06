@@ -4,20 +4,26 @@ This is a File Management Service for Wipro Asseccement.
 
 ## Set up Enviroment
 
-To set up enviroment run following command:
+To run in development environment:
 
 ```
-docker-compose up --build
+docker-compose -f ./docker-compose-dev.yml up --build
+```
+To run in production environment:
+
+```
+docker-compose -f ./docker-compose-prod.yml up --build
 ```
 
 ## Web Frontend
 
-#### After building up the environments, you can access the Web GUI with http://localhost:5173/ 
+#### After building up the environments in dev, you can access the Web GUI with http://localhost:5173/ 
+#### After building up the environments in prod, you can access the Web GUI with http://localhost:81/ 
 (Unaviable Right Now)<s>Or you can access it with a built up service at http://file-system-1957172786.us-east-1.elb.amazonaws.com/, with mocked data inserted</s>
 ## Connecting Directly
-#### There is a API-KEY set for the API, please add this information when accessing:
+#### There is a API-KEY set for the API, please add this information to the header when accessing:
 <details>
-  <summary>Example</summary>
+  <summary>API-KEY</summary>
 
   ```
    { api-key : lskdjf9834lsdkjfASDF98sdf09sdfSDF0sdfSDF90sdf }
@@ -29,7 +35,7 @@ docker-compose up --build
 
 ### Required API:
 #### Host: http://localhost:8000
-#### Public Host: http://ec2-3-81-236-188.compute-1.amazonaws.com:8000
+#### <s>Public Host: http://ec2-3-81-236-188.compute-1.amazonaws.com:8000</s>
 
 - GetRecords:
 
